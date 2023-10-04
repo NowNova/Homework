@@ -1,12 +1,12 @@
 #include <iostream>
 #include <cmath>
+#include <iomanip>
 
 
 
 int main() {
 	double num, pr = 1;
 	double min = pow(2, 64);
-	std::cout << min;
 	std::cin >> num;
 	int nomer = 1, glnomer;
 	if (num < 0 && num != int(num)) {
@@ -19,7 +19,7 @@ int main() {
 		nomer += 1;
 		if (num < 0 && num != int(num)) {
 			pr *= num;
-			std::cout << num << " " << pr << " ";
+			std::cout << num << " " << std::setprecision(9) << pr << " ";
 			if (min > num) {
 				min = num;
 				glnomer = nomer;
@@ -35,7 +35,6 @@ int main() {
 
 
 }
-
 #include <iostream>
 #include <iomanip>
 
