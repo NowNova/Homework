@@ -11,6 +11,7 @@ int main() {
 		std::cin >> a[i];
 	}
 	std::copy(std::begin(a), std::end(a), std::begin(c));
+ 	//Массив суммы цифр числа
 	for (int v = 0; v < l; ++v) {
 		while (c[v] > 0) {
 			sum += c[v] % 10;
@@ -19,10 +20,12 @@ int main() {
 		summ[v] = sum;
 		sum = 0;
 	}
+ 	//Двумерный массив первая строка - число; вторая строка - сумма цифр этошо числа (мне так проще было уследить за всем)
 	for (int i = 0; i < l; ++i) {
 		d[0][i] = a[i];
 		d[1][i] = summ[i];
 	}
+ 	//первая цифра числа
 	int soxr = 0, su = 0;
 	for (int i = 0; i < l; ++i) {
 		soxr = d[0][i];
@@ -34,6 +37,7 @@ int main() {
 		cifra[i] = su;
 		soxr = 0;
 	}
+ 	//сортировка по сумме цифр числа
 	for (int i = 0; i < l; ++i) {
 		for (int j = i; j < l; ++j) {
 			if (d[1][i] > d[1][j]) {
@@ -46,6 +50,7 @@ int main() {
 			}
 		}
 	}
+ 	//сортировка по первой цифре числа
 	std::cout << "\n";
 	for (int i = 0; i < l - 1; ++i) {
 		if (cifra[i] > cifra[i + 1] && d[1][i] == d[1][i + 1]) {
@@ -57,6 +62,7 @@ int main() {
 			cifra[i + 1] = tmpp;
 		}
 	}
+ 	//сортировка по значению числа (у тех чисел, которые равны по сумме цифр)
 	for (int i = 0; i < l; i++) {
 		for (int j = 0; j < l - i - 1; j++) {
 			if (d[0][j] > d[0][j + 1] && d[1][i] == d[1][j]) {
@@ -66,11 +72,13 @@ int main() {
 			}
 		}
 	}
+ 	//Овет
 	for (int i = 0; i < 2; ++i) {
 		std::cout << "\n";
 		for (int j = 0; j < l; ++j) {
 			std::cout << d[i][j] << " ";
 		}
 	}
+ 	//код не оптимизирован, но вроде рабочий)
 
 }
