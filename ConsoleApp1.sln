@@ -1,57 +1,44 @@
 #include <iostream>
-#include <cmath>
-#include <iomanip>
+#include <algorithm>
 
 
+const short n = 10000;
 
 int main() {
-	double num, pr = 1;
-	double min = pow(2, 64);
-	std::cin >> num;
-	int nomer = 1, glnomer;
-	if (num < 0 && num != int(num)) {
-		glnomer = nomer;
-		double min = num;
-		pr *= num;
+	int l, sum = 0, g = 0, c[n];
+	std::cin >> l;
+	int a[n]{};
+	for (int i = 0; i < l; ++i) {
+		std::cout << "a[" << i << "]: ";
+		std::cin >> a[i];
 	}
-	while (num != 0) {
-		std::cin >> num;
-		nomer += 1;
-		if (num < 0 && num != int(num)) {
-			pr *= num;
-			std::cout << num << " " << std::setprecision(9) << pr << " ";
-			if (min > num) {
-				min = num;
-				glnomer = nomer;
-				std::cout << glnomer << std::endl;
+	std::copy(std::begin(a), std::end(a), std::begin(c));
+	for (int i = 0; i < l; ++i) {
+		while (a[i] > 0) {
+			sum = sum + (a[i] % 10);
+			a[i] /= 10;
+		}
+
+		if (sum % 19 == 0) {
+			g += 1;
+			sum = 0;
+		}
+		else { sum = 0; }
+	}
+	if (g == 0) {
+		for (int i = 0; i < l; ++i) {
+			for (int j = i + 1; j < l; ++j) {
+				if (c[i] < c[j]) {
+					int prox;
+					prox = c[i];
+					c[i] = c[j];
+					c[j] = prox;
+				}
+
 			}
 		}
-		else {
-			std::cout << min << " " << pr << " " << glnomer << std::endl;
-
-
-		}
 	}
-
-
-}
-#include <iostream>
-#include <iomanip>
-
-
-
-int main() {
-	long long N;
-	int min = 10;
-	std::cin >> N;
-	while (N) {
-		if (min > (N % 10)) {
-			min = N % 10;
-			N /= 10;
-		}
-		else { N /= 10; }
+	for (int i = 0; i < l; ++i) {
+		std::cout << c[i]<< " ";
 	}
-	std::cout << min;
-
 }
-
